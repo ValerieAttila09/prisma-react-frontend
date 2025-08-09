@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/clerk-react"
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton, useUser } from "@clerk/clerk-react"
 
 export default function Navbar() {
 
@@ -23,10 +23,7 @@ export default function Navbar() {
         <Link to={"/orders"}>
           <button className="outfit-regular text-neutral-700 hover:text-neutral-900 transition-all rounded-md px-3 py-1 cursor-pointer">Orders</button>
         </Link>
-        <Link to={"/contact"}>
-          <button className="outfit-regular text-neutral-700 hover:text-neutral-900 transition-all rounded-md px-3 py-1 cursor-pointer">Contact</button>
-        </Link>
-        {!isSignedIn ? (
+        <SignedOut>
           <div className="flex items-center gap-1">
             <SignInButton mode="modal" className="outfit-regular bg-neutral-900 text-white hover:bg-neutral-700 transition-all rounded-md px-3 py-1 cursor-pointer">
               Login
@@ -35,12 +32,11 @@ export default function Navbar() {
               Sign Up
             </SignUpButton>
           </div>
-        ) : (
-          <div className="flex items-center gap-2 ms-4">
-            <span className="text-sm outfit-regular text-neutral-800">Welcome, {user.fullName || user.username}</span>
-            <UserButton/>
-          </div>
-        )}
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+
       </div>
     </div>
   )

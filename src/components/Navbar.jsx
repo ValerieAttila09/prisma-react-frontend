@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom"
+import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/clerk-react"
 
 export default function Navbar() {
+
+  const { isSignedIn, user } = useUser()
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-1 bg-transparent flex items-center justify-between">
       <div className="flex items-center gap-2">
@@ -13,18 +17,30 @@ export default function Navbar() {
         <Link to={"/"}>
           <button className="outfit-regular text-neutral-700 hover:text-neutral-900 transition-all rounded-md px-3 py-1 cursor-pointer">Home</button>
         </Link>
-        <Link to={"/"}>
+        <Link to={"/about"}>
           <button className="outfit-regular text-neutral-700 hover:text-neutral-900 transition-all rounded-md px-3 py-1 cursor-pointer">About</button>
         </Link>
-        <Link to={"/"}>
+        <Link to={"/orders"}>
           <button className="outfit-regular text-neutral-700 hover:text-neutral-900 transition-all rounded-md px-3 py-1 cursor-pointer">Orders</button>
         </Link>
-        <Link to={"/"}>
+        <Link to={"/contact"}>
           <button className="outfit-regular text-neutral-700 hover:text-neutral-900 transition-all rounded-md px-3 py-1 cursor-pointer">Contact</button>
         </Link>
-        <Link to={"/"}>
-          <button className="outfit-regular bg-neutral-900 text-white hover:bg-neutral-700 transition-all rounded-md px-3 py-1 cursor-pointer">Login</button>
-        </Link>
+        {!isSignedIn ? (
+          <div className="flex items-center gap-1">
+            <SignInButton mode="modal" className="outfit-regular bg-neutral-900 text-white hover:bg-neutral-700 transition-all rounded-md px-3 py-1 cursor-pointer">
+              Login
+            </SignInButton>
+            <SignUpButton mode="modal" className="outfit-regular bg-neutral-900 text-white hover:bg-neutral-700 transition-all rounded-md px-3 py-1 cursor-pointer">
+              Sign Up
+            </SignUpButton>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2 ms-4">
+            <span className="text-sm outfit-regular text-neutral-800">Welcome, {user.fullName || user.username}</span>
+            <UserButton/>
+          </div>
+        )}
       </div>
     </div>
   )

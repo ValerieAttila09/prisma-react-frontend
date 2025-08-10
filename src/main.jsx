@@ -9,9 +9,7 @@ const PUBLISHABLE_KEY = "pk_test_b3B0aW1hbC1wb2xlY2F0LTg2LmNsZXJrLmFjY291bnRzLmR
 createRoot(document.getElementById('root')).render(
   <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />}></Route>
-      </Routes>
+      <App/>
     </BrowserRouter>
   </ClerkProvider>,
 )

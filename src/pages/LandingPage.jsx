@@ -1,8 +1,12 @@
 import LandingPageComponent from "../components/LandingPage";
+import Navbar from "../components/Navbar";
 
 
 export default function LandingPage() {
   return (
-    <LandingPageComponent/>
+    <div className="w-full">
+      <Navbar/>
+      <LandingPageComponent/>
+    </div>
   )
 }

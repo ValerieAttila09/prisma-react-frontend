@@ -21,7 +21,6 @@ export default function Navbar() {
           <button className="outfit-regular text-neutral-700 hover:text-neutral-900 transition-all rounded-md px-3 py-1 cursor-pointer">Orders</button>
         </Link>
         <AuthButtons/>
-
       </div>
     </div>
   )

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import Plane from "../assets/images/place-flying-sunset-sky.png"
 import { useProfile } from "../hooks/useProfile"
 import { useUser } from "@clerk/clerk-react"
+import Sponsor from "./Sponsor"
 
 export default function LandingPageComponent() {
   const profile = useProfile()
@@ -35,6 +36,7 @@ export default function LandingPageComponent() {
           </div>
         </div>
       </div>
+      <Sponsor/>
     </div>
   )
 }

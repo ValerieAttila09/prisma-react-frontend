@@ -7,6 +7,7 @@ export default function AfterLogin() {
 
   async function syncUser() {
     const token = await getToken()
+    console.log(token)
     await fetch('https://prisma-react-backend-production.up.railway.app/api/sync-user', {
       method: "POST",
       headers: {

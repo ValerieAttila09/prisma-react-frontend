@@ -6,6 +6,7 @@ import About from "./pages/About"
 import Contact from "./pages/Contact"
 import { useAuth, useClerk, useUser } from "@clerk/clerk-react"
 import { useEffect } from "react"
+import AfterLogin from "./pages/AfterLogin"
 
 export default function App() {
 
@@ -31,6 +32,7 @@ export default function App() {
       <Route path='/profile' element={<Profile />}></Route>
       <Route path='/about' element={<About />}></Route>
       <Route path='/contact' element={<Contact />}></Route>
+      <Route path='/auth' element={<AfterLogin />}></Route>
     </Routes>
   )
 }

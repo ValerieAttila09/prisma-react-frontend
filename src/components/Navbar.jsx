@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom"
 import AuthButtons from "./AuthButtons"
+import { useAuth } from "@clerk/clerk-react"
 
 export default function Navbar() {
+
+  const { getToken } = useAuth()
+
+  async function syncUser() {
+    const token = await getToken()
+    await fetch('https://prisma-react-backend-production.up.railway.app/me', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  }
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-1 bg-transparent flex items-center justify-between">
       <div className="flex items-center gap-2">
@@ -20,7 +33,8 @@ export default function Navbar() {
         <Link to={"/orders"} className="me-2">
           <button className="outfit-regular text-neutral-700 hover:text-neutral-900 transition-all rounded-md px-3 py-1 cursor-pointer">Pricing</button>
         </Link>
-        <AuthButtons/>
+        <AuthButtons />
+        <button onClick={syncUser} className="ms-2 rounded-md bg-white border border-[#d7d7d7] px-4 py-1 hover:shadow-md hover:bg-[#fafafa] transition-all">Sync User</button>
       </div>
     </div>
   )
